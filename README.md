@@ -1,5 +1,7 @@
 # Calculator
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -21,13 +23,28 @@ public class Test extends JFrame{
 	}
 	
 	void showNorth() {
-	  JPanel p1 = new JPanel();
-	  
-	  JTextField result = new JTextField();
-	  result.setEditable(false);
-	  
-	  p1.add(result);
-	  add(p1, BorderLayout.NORTH);
+		/** 
+	 	  * JPanel p1 = new JPanel();
+		  *
+		  *	JTextField result = new JTextField();
+		  *	result.setEditable(false);
+		  *
+		  *	p1.add(result);
+		  *	add(p1, BorderLayout.NORTH);
+		  *	
+		  * 이 부분에서 텍스트 필드 크기가 딱 맞지않아 남는공간에 맞추고 싶어 ChatGPT 사용
+		  */
+		JPanel p1 = new JPanel(new BorderLayout()); // @see ChatGPT  p1에 BorderLayout을 적용함 이렇게 하면 텍스트 필드가 p1 패널 내부에서 전체 너비를 차지하게 됩니다.
+                                                    // 텍스트 필드를 p1 CENTER에 배치하여 p1 내부에서 전체 너비 채우기 가능 
+   
+		JTextField result = new JTextField("0");
+		result.setEditable(false);
+		result.setFont(new Font("Arial", Font.BOLD, 30)); // @see ChatGPT 글꼴과 크기 설정
+		result.setHorizontalAlignment(JTextField.RIGHT);  // @see ChatGPT 오른쪽 정렬
+		result.setPreferredSize(new Dimension(0, 80));    // @see ChatGPT 높이 설정
+
+		p1.add(result, BorderLayout.CENTER);
+		add(p1, BorderLayout.NORTH);
 	}
 	
 	void showCenter() {
